@@ -28,7 +28,27 @@ function load_question() {
 
     document.querySelectorAll(".option").forEach(option => {
         option.onclick = () => {
-            alert(option.textContent);
+
+            // Get value of option
+            const check = option.innerHTML;
+            
+            // Get answer
+            const answer = questions[question_number].answer;
+            
+            // Check if it is the right answer
+            if (check === answer) {
+                correct++;
+                //question_number++;
+            }
+            
+            else {
+                //question_number++;
+            }
+
+            //Update DOM
+                // correct = ["0, of, 0"]
+                // correct[0] +1
+                // correct[2] = total
         }
     });
 
