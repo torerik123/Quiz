@@ -1,30 +1,80 @@
 const questions = [
     {
-        question: "What is Athena's favorite animal?",
-        options: ["jellyfish", "penguins", "otters"],
-        answer: "otters"
+        question: "Where were the fortune cookies invented?",
+        options: ["San Francisco", "Hong Kong", "Guangzhou"],
+        answer: "San Francisco"
     },
     {
-        question: "What is 10 + 10?",
-        options: ["8", "20", "28", "30"],
-        answer: "20"
+        question: "What animal cannot stick out their tongue?",
+        options: ["Kangaroo", "Crocodile", "Mouse"],
+        answer: "Crocodile"
     },
 
     {
-        question: "This is the last question",
-        options: ["1", "2", "right", "wrong"],
-        answer: "right"
+        question: "What is the fear of long words known as?",
+        options: ["Arachnophopia", "Koumpounophobia", "Hippopotomostrosesquippedaliophobia"],
+        answer: "Hippopotomostrosesquippedaliophobia"
+    },
+
+    {
+        question: "Who composed the music for Sonic the Hedgehog 3?",
+        options: ["Koji Kondo", "Michael Jackson", "Hans Zimmer"],
+        answer: "Michael Jackson"
+    },
+
+    {
+        question: "What color is the ‘black box’ in an airplane?",
+        options: ["Black", "Green", "Orange"],
+        answer: "Orange"
+    },
+
+    {
+        question: "What is Johnny Depp afraid of?",
+        options: ["Clowns", "Bears", "Taxes"],
+        answer: "Clowns"
+    },
+
+    {
+        question: "How many teeth does an aardvark have?",
+        options: ["5", "32", "None"],
+        answer: "None"
+    },
+
+    {
+        question: "What was Marilyn Monroe’s natural hair color?",
+        options: ["Blonde", "Red", "Brown"],
+        answer: "Red"
+    },
+
+    {
+        question: "With how many bricks is the Empire State Building is made of?",
+        options: ["10 million", "40 million", "5 million"],
+        answer: "10 million"
+    },
+
+    {
+        question: "On Sunday what is illegal to sell in Columbus, Ohio?",
+        options: ["Alcohol", "Bananas", "Cornflakes"],
+        answer: "Cornflakes"
     }
 ];
 
+// Total # of questions
+const questionLength = questions.length;
+
+// Curent question
 let question_number = 0;
+
+// Correct answers
 let correct = 0;
 
+// Wait for page to load
 document.addEventListener("DOMContentLoaded", () => {
     load_question();
 });
 
 function load_question() {
+
     document.querySelector("#question").innerHTML = questions[question_number].question;
     const options = document.querySelector("#options");
     options.innerHTML = "";
@@ -32,6 +82,7 @@ function load_question() {
         options.innerHTML += `<button class="option">${option}</button>`;
     }
 
+    // Check if selected answer is correct
     document.querySelectorAll(".option").forEach(option => {
         option.onclick = () => {
 
@@ -44,7 +95,6 @@ function load_question() {
             // Check if it is the right answer
             if (check === answer) {
                 correct++;
-                console.log("Correct answer");
                 question_number++;
             }
             
@@ -54,15 +104,21 @@ function load_question() {
 
             // Update score
             const score = document.querySelector("#correct");
-           
             score.innerHTML = correct + " of " + question_number;
             
-            // New question
-            load_question()
-            
+            // If last question
+            if (question_number == questionLength){
+                
+                document.querySelector("#question").innerHTML = "Quiz complete!";
+                
+                // Remove option buttons
+                document.querySelector("#options").style.display = "none";
+            }
 
-            // If last question: Display game over page
+            else {
+                // Load next question
+                load_question()
+            }
         }
     });
-
 }
