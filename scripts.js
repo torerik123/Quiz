@@ -8,6 +8,12 @@ const questions = [
         question: "What is 10 + 10?",
         options: ["8", "20", "28", "30"],
         answer: "20"
+    },
+
+    {
+        question: "This is the last question",
+        options: ["1", "2", "right", "wrong"],
+        answer: "right"
     }
 ];
 
@@ -38,17 +44,24 @@ function load_question() {
             // Check if it is the right answer
             if (check === answer) {
                 correct++;
-                //question_number++;
+                console.log("Correct answer");
+                question_number++;
             }
             
             else {
-                //question_number++;
+                question_number++;
             }
 
-            //Update DOM
-                // correct = ["0, of, 0"]
-                // correct[0] +1
-                // correct[2] = total
+            // Update score
+            const score = document.querySelector("#correct");
+           
+            score.innerHTML = correct + " of " + question_number;
+            
+            // New question
+            load_question()
+            
+
+            // If last question: Display game over page
         }
     });
 
