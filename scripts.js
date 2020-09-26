@@ -11,9 +11,9 @@ const questions = [
     },
 
     {
-        question: "What is the fear of long words known as?",
-        options: ["Arachnophopia", "Koumpounophobia", "Hippopotomostrosesquippedaliophobia"],
-        answer: "Hippopotomostrosesquippedaliophobia"
+        question: "How many sides does a dodecahedron have?",
+        options: ["12", "8", "7"],
+        answer: "12"
     },
 
     {
@@ -104,7 +104,7 @@ function load_question() {
 
             // Update score
             const score = document.querySelector("#correct");
-            score.innerHTML = correct + " of " + question_number;
+            score.innerHTML = correct + " of " + questionLength;
             
             // If last question
             if (question_number == questionLength){
