@@ -47,7 +47,7 @@ const questions = [
     },
 
     {
-        question: "With how many bricks is the Empire State Building is made of?",
+        question: "How many bricks is the Empire State Building made of?",
         options: ["10 million", "40 million", "5 million"],
         answer: "10 million"
     },
@@ -62,7 +62,7 @@ const questions = [
 // Total # of questions
 const questionLength = questions.length;
 
-// Curent question
+// Current question
 let question_number = 0;
 
 // Correct answers
@@ -70,8 +70,36 @@ let correct = 0;
 
 // Wait for page to load
 document.addEventListener("DOMContentLoaded", () => {
-    load_question();
+
+    // Hide timer and # correct questions
+    document.querySelector("#countdown").style.display = "none";
+    document.querySelector(".correct").style.display = "none";
+    
+    // Hide play again button
+    playagain = document.querySelector("#playagain");
+    playagain.style.display = "none"
+
+    // Start quiz
+    start = document.querySelector("#start");
+    start.addEventListener("click", () => {
+        
+        // Hide start button
+        start.style.display = "none";
+        
+        // Load question and start countdown
+        load_question();
+        setInterval(count, 1000);
+        document.querySelector("#countdown").style.display = "block";
+        document.querySelector(".correct").style.display = "block";   
+    });
 });
+
+let counter = 100;
+
+function count() {
+    counter--;
+    document.querySelector("#counter").innerHTML = counter;
+}
 
 function load_question() {
 
@@ -113,6 +141,15 @@ function load_question() {
                 
                 // Remove option buttons
                 document.querySelector("#options").style.display = "none";
+
+                // Hide timer
+                document.querySelector("#countdown").style.display = "none";
+                
+                // Play again
+                playagain.style.display = "initial";
+                playagain.addEventListener("click", () => {
+                    location.reload();    
+    })
             }
 
             else {
