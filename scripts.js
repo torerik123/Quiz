@@ -97,9 +97,32 @@ document.addEventListener("DOMContentLoaded", () => {
 let counter = 100;
 
 function count() {
-    counter--;
-    document.querySelector("#counter").innerHTML = counter;
+    if (counter > 0) {
+        counter--;
+        document.querySelector("#counter").innerHTML = counter;
+    }
+
+    else {
+        game_over();
+    }    
 }
+
+function game_over() {
+    document.querySelector("#question").innerHTML = "Quiz complete!";
+                
+                // Remove option buttons
+                document.querySelector("#options").style.display = "none";
+
+                // Hide timer
+                document.querySelector("#countdown").style.display = "none";
+                
+                // Play again
+                playagain.style.display = "initial";
+                playagain.addEventListener("click", () => {
+                    location.reload();
+                });
+};
+
 
 function load_question() {
 
@@ -136,20 +159,7 @@ function load_question() {
             
             // If last question
             if (question_number == questionLength){
-                
-                document.querySelector("#question").innerHTML = "Quiz complete!";
-                
-                // Remove option buttons
-                document.querySelector("#options").style.display = "none";
-
-                // Hide timer
-                document.querySelector("#countdown").style.display = "none";
-                
-                // Play again
-                playagain.style.display = "initial";
-                playagain.addEventListener("click", () => {
-                    location.reload();    
-    })
+                game_over();
             }
 
             else {
